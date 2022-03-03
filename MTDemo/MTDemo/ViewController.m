@@ -39,7 +39,9 @@
 //    [MTEngine.defaultEngine applyRule:rule];
     
     // 跟上面的用法等价
+    NSObject *obj = [[NSObject alloc] init];
     __unused MTRule *rule = [self.stub mt_limitSelector:@selector(foo:) oncePerDuration:0.5 usingMode:MTPerformModeDebounce onMessageQueue:dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0) alwaysInvokeBlock:^(MTInvocation *invocation, NSDate *date) {
+        NSLog(@"%@", obj);
         if ([date isEqualToDate:[NSDate dateWithTimeIntervalSince1970:0]]) {
             return YES;
         }
